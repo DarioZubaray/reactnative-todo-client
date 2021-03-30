@@ -1,56 +1,38 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
-import AddTodo from './components/addTodo';
-import Header from './components/header'
-import TodoItem from './components/todoItem';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { HomeScreen } from "./src/screens/HomeScreen";
+import { LoginScreen } from "./src/screens/LoginScreen";
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  const [todos, setTodos] = useState([
-    { text: 'tomar mates', key: '1'},
-    { text: 'curso preparacion oracle', key: '2'},
-    { text: 'curso aws', key: '3'},
-  ]);
-
-  const pressHandler = (key) => {
-    setTodos( (prevTodos) => {
-      return prevTodos.filter(todo => todo.key !== key);
-    })
-  }
-
-  const submitHandler = (text) => {
-    setTodos( (prevTodos) => {
-      return [
-        ...prevTodos,
-        { text, key: Math.random().toString()}
-      ]
-    })
-  }
-
-  return (
-    <View style={styles.container}>
-      <Header />
-      <View style={styles.content}>
-        <AddTodo submitHandler={submitHandler} />
-        <View style={styles.list}>
-          <FlatList data={todos} renderItem={( {item}) => (
-            <TodoItem item={item} pressHandler={pressHandler}/>
-          )} />
-        </View>
-      </View>
-    </View>
-  );
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen
+                    name="login"
+                    component={LoginScreen}
+                    options={{
+                        title: "Login",
+                        headerStyle: {
+                            backgroundColor: "#f4511e",
+                        },
+                        headerTintColor: "#fff",
+                    }}
+                />
+                <Stack.Screen
+                    name="home"
+                    component={HomeScreen}
+                    options={{
+                        title: "My Todo List",
+                        headerStyle: {
+                            backgroundColor: "#f4511e",
+                        },
+                        headerTintColor: "#fff",
+                    }}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff'
-  },
-  content: {
-    padding: 40
-  },
-  list: {
-    marginTop: 20,
-    backgroundColor: '#fff'
-  }
-});

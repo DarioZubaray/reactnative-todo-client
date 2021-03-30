@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "my-first-app",
-    "slug": "my-first-app",
-    "version": "1.0.0",
+    "name": "my-todo-app",
+    "slug": "my-todo-app",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
