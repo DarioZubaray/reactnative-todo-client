@@ -1,12 +1,11 @@
 import axios from "axios";
-
-const baseURL = "http://192.168.1.47:8080/";
+import {API_URL} from "@env";
 
 const authenticate = async (username, password) => {
-    console.log("Todo - authenticate");
+    console.log("Todo - authenticate", API_URL);
     const config = {
         method: "POST",
-        baseURL,
+        API_URL,
         headers: {
             "content-type": "application/json",
         },
@@ -38,7 +37,7 @@ const getAll = async (token) => {
     console.log("Todo - getAll");
     const config = {
         method: "GET",
-        baseURL,
+        API_URL,
         headers: {
             "content-type": "application/json",
             Authorization: "Bearer " + token,
@@ -67,7 +66,7 @@ const addNew = async (newTodo, token) => {
     console.log("Todo - addNew");
     const config = {
         method: "POST",
-        baseURL,
+        API_URL,
         headers: {
             "content-type": "application/json",
             Authorization: "Bearer " + token,
@@ -96,7 +95,7 @@ const deleteById = async (id, token) => {
     console.log("Todo - deleteById");
     const config = {
         method: "DELETE",
-        baseURL,
+        API_URL,
         headers: {
             "content-type": "application/json",
             Authorization: "Bearer " + token,
