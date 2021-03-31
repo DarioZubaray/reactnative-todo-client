@@ -2,10 +2,10 @@ import axios from "axios";
 import {API_URL} from "@env";
 
 const authenticate = async (username, password) => {
-    console.log("Todo - authenticate", API_URL);
+    console.log("Todo - authenticate");
     const config = {
         method: "POST",
-        API_URL,
+        baseURL: API_URL,
         headers: {
             "content-type": "application/json",
         },
@@ -37,7 +37,7 @@ const getAll = async (token) => {
     console.log("Todo - getAll");
     const config = {
         method: "GET",
-        API_URL,
+        baseURL: API_URL,
         headers: {
             "content-type": "application/json",
             Authorization: "Bearer " + token,
@@ -66,7 +66,7 @@ const addNew = async (newTodo, token) => {
     console.log("Todo - addNew");
     const config = {
         method: "POST",
-        API_URL,
+        baseURL: API_URL,
         headers: {
             "content-type": "application/json",
             Authorization: "Bearer " + token,
@@ -95,7 +95,7 @@ const deleteById = async (id, token) => {
     console.log("Todo - deleteById");
     const config = {
         method: "DELETE",
-        API_URL,
+        baseURL: API_URL,
         headers: {
             "content-type": "application/json",
             Authorization: "Bearer " + token,
